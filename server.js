@@ -8,6 +8,8 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+
 const db = knex({
     client: 'pg',
     connection: {
@@ -24,7 +26,7 @@ app.use(cors());
 
 
 app.get('/', (req, res) => {
-    res.send('database.user');
+    res.send('it is working');
 })
 
 app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt)})
